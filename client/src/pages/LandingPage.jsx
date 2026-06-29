@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Specialties from '../components/Specialties';
-import AnxiousToCalm from '../components/AnxiousToCalm';
 import Timeline from '../components/Timeline';
 import Testimonials from '../components/Testimonials';
 import ContactForm from '../components/ContactForm';
@@ -30,7 +29,6 @@ export default function LandingPage() {
         <Hero />
         <About />
         <Specialties />
-        <AnxiousToCalm />
         <Timeline />
         <Testimonials />
         <ContactForm />

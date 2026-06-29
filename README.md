@@ -2,6 +2,19 @@
 
 Full-stack landing site for a private therapy clinic with a private admin dashboard for managing contact-form submissions.
 
+---
+
+## Demo
+
+### Landing Page — Desktop
+![Landing page desktop demo](docs/landing-page-website.gif)
+
+### Landing Page — Mobile
+![Landing page mobile demo](docs/landing-page-phone.gif)
+
+### Admin Dashboard
+![Admin dashboard demo](docs/admin-board-website.gif)
+
 - **Frontend:** React + Vite + Tailwind CSS (RTL, Hebrew)
 - **Backend:** Node.js + Express, written in **TypeScript** (layered architecture)
 - **Database:** SQLite via `better-sqlite3` (zero external services)

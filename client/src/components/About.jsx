@@ -1,5 +1,6 @@
 import Reveal from './Reveal';
 import therapistPhoto from '../assets/therapist_placeholder.png';
+import { ABOUT } from '../config/content';
 
 export default function About() {
   return (
@@ -19,11 +20,10 @@ export default function About() {
             >
               <img
                 src={therapistPhoto}
-                alt="ישראלה ישראלי — עובדת סוציאלית קלינית"
+                alt={ABOUT.photoAlt}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
             </div>
-            {/* Floating badge */}
             <div
               className="bob absolute font-display text-paper rounded-2xl"
               style={{
@@ -35,7 +35,7 @@ export default function About() {
                 lineHeight: 1.4,
               }}
             >
-              MSW עו״ס קלינית<br />יועצת זוגית · CBT
+              {ABOUT.badge}<br />{ABOUT.badgeSub}
             </div>
           </div>
         </Reveal>
@@ -46,34 +46,25 @@ export default function About() {
             style={{ fontSize: 13, letterSpacing: '.14em', color: '#8a4a20' }}>— נעים להכיר</p>
           <h2 className="font-display font-medium text-ink"
             style={{ fontSize: 'clamp(30px,6vw,44px)', lineHeight: 1.12, margin: '0 0 6px' }}>
-            שמי ישראלה
+            {ABOUT.heading}
           </h2>
           <div style={{ width: 48, height: 3, borderRadius: 2, background: '#c0824f', margin: '0 0 20px' }} />
 
           <p className="text-ink-soft" style={{ fontSize: 'clamp(15px,2.5vw,17px)', lineHeight: 1.8, marginBottom: 16 }}>
-            עו״ס קלינית עם למעלה מ-20 שנות ניסיון, המשלבת טיפול דינמי מעמיק עם כלים קוגניטיביים-התנהגותיים (CBT).
+            {ABOUT.bio1}
           </p>
           <p className="text-ink-soft" style={{ fontSize: 'clamp(15px,2.5vw,17px)', lineHeight: 1.8, marginBottom: 24 }}>
-            השילוב בין ניסיון קליני עשיר, הבנה מעמיקה של הנפש, וכלים יישומיים מה-CBT מאפשר למטופלים לעבור שינוי משמעותי — להבין את עצמם לעומק, להתמודד אחרת עם מצבים מאתגרים, ולבנות חיים של יציבות, רווחה נפשית וביטחון פנימי.
+            {ABOUT.bio2}
           </p>
 
           <div style={{ borderRight: '3px solid rgba(192,130,79,.4)', paddingRight: 14, marginBottom: 24 }}>
-            {[
-              'MSW — עבודה סוציאלית קלינית, מומחית טראומה',
-              'B.A — טיפול וקידום נוער',
-              'יועצת זוגית מוסמכת',
-              'מספר רישיון: 27184',
-            ].map(c => (
+            {ABOUT.credentials.map(c => (
               <p key={c} className="text-muted" style={{ fontSize: 13.5, lineHeight: 1.8, margin: 0 }}>{c}</p>
             ))}
           </div>
 
           <div className="flex gap-2.5 flex-wrap">
-            {[
-              { label: 'גישה אינטגרטיבית', bg: 'rgba(192,130,79,.12)', color: '#a86a3a' },
-              { label: 'ליווי בין פגישות',  bg: 'rgba(58,90,64,.1)',   color: '#3a5a40' },
-              { label: 'קצב אישי',          bg: 'rgba(192,130,79,.12)', color: '#a86a3a' },
-            ].map(p => (
+            {ABOUT.tags.map(p => (
               <span key={p.label} className="font-semibold rounded-full px-4 py-2"
                 style={{ background: p.bg, color: p.color, fontSize: 13.5 }}>
                 {p.label}

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { THERAPIST, FOOTER } from '../config/content';
 
 function scrollTo(id) {
   const el = document.getElementById(id);
@@ -18,18 +19,18 @@ export default function Footer() {
   return (
     <footer className="relative z-10" style={{ background: '#2c2823', color: '#d8cfbe', padding: 'clamp(36px,6vw,54px) clamp(20px,5vw,40px) 28px' }}>
       <div style={{ maxWidth: 1140, margin: '0 auto' }}>
-        {/* Three columns — stack on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-8"
           style={{ borderBottom: '1px solid rgba(216,207,190,.14)' }}>
+
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="flex items-center justify-center rounded-full text-ink flex-shrink-0"
-                style={{ width: 38, height: 38, background: '#c0824f', fontSize: 19, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>צ</span>
-              <span style={{ fontSize: 20, color: '#fbf7ef', fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>ישראלה ישראלי</span>
+                style={{ width: 38, height: 38, background: '#c0824f', fontSize: 19, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>{THERAPIST.initial}</span>
+              <span style={{ fontSize: 20, color: '#fbf7ef', fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>{THERAPIST.name}</span>
             </div>
             <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#b3a994', maxWidth: 300, margin: 0 }}>
-              עובדת סוציאלית קלינית, מומחית לטיפול בטראומה ויועצת זוגית מוסמכת. טיפול רגשי בגובה עיניים — למבוגרים, נוער וזוגות, תל אביב והסביבה.
+              {FOOTER.description}
             </p>
           </div>
 
@@ -51,9 +52,9 @@ export default function Footer() {
           <div>
             <p className="font-mono uppercase mb-3" style={{ fontSize: 10.5, letterSpacing: '.16em', color: '#8a7a64' }}>פרטי קשר</p>
             <div style={{ fontSize: 14.5, lineHeight: 1.9, color: '#b3a994' }}>
-              <a href="tel:0501234567" style={{ color: '#b3a994', textDecoration: 'none', display: 'block', direction: 'ltr', textAlign: 'right' }}>050-1234567</a>
-              <a href="mailto:demo@example.com" style={{ color: '#b3a994', textDecoration: 'none', display: 'block' }}>demo@example.com</a>
-              <span style={{ display: 'block' }}>רחוב הדוגמה 1, תל אביב</span>
+              <a href={THERAPIST.phoneHref} style={{ color: '#b3a994', textDecoration: 'none', display: 'block', direction: 'ltr', textAlign: 'right' }}>{THERAPIST.phone}</a>
+              <a href={`mailto:${THERAPIST.email}`} style={{ color: '#b3a994', textDecoration: 'none', display: 'block' }}>{THERAPIST.email}</a>
+              <span style={{ display: 'block' }}>{THERAPIST.address}</span>
               <span style={{ display: 'block' }}>מענה גם בזום</span>
             </div>
           </div>
@@ -62,7 +63,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-wrap justify-between items-center gap-2 pt-5"
           style={{ fontSize: 12.5, color: '#8a7a64' }}>
-          <span>© 2026 ישראלה ישראלי · כל הזכויות שמורות</span>
+          <span>© {THERAPIST.copyrightYear} {THERAPIST.name} · כל הזכויות שמורות</span>
           <button onClick={() => navigate('/admin/login')}
             className="font-mono cursor-pointer hover:text-muted-light transition-colors"
             style={{ fontSize: 11.5, color: '#8a7a64', background: 'none', border: 'none' }}>

@@ -1,13 +1,5 @@
 import Reveal from './Reveal';
-
-const CARDS = [
-  { title: 'חרדות ודיכאון',           desc: 'עבודה עדינה ומעמיקה על זיהוי דפוסים, ויסות רגשי והחזרת תחושת השליטה והחיוניות לחיים, צעד אחר צעד ובקצב שנכון לך.', icon: '❀', tint: 'rgba(192,130,79,.12)', color: '#a86a3a' },
-  { title: 'טראומה ואובדן',            desc: 'מרחב בטוח לעבד חוויות כואבות, לשחרר את העומס הרגשי, ולמצוא דרך חדשה להתקיים לצד מה שהיה — מבלי שהכאב ינהל את ההווה.', icon: '❋', tint: 'rgba(58,90,64,.1)',   color: '#3a5a40' },
-  { title: 'הפרעות אכילה',             desc: 'תהליך טיפולי רגיש ומבוסס אמון, המחבר בין הגוף והנפש ומסייע לבנות מערכת יחסים בריאה יותר עם אוכל, דימוי גוף וזהות אישית.', icon: '☼', tint: 'rgba(192,130,79,.12)', color: '#a86a3a' },
-  { title: 'אתגרים נפשיים ובריאותיים', desc: 'ליווי ותמיכה בהתמודדות עם מצבים מתמשכים של קושי נפשי או פיזי, תוך חיזוק כוחות פנימיים והסתגלות מיטיבה למציאות המשתנה.', icon: '✶', tint: 'rgba(58,90,64,.1)',   color: '#3a5a40' },
-  { title: 'טיפול זוגי',               desc: 'עבודה ממוקדת על תקשורת, אמפתיה והבנה הדדית — כדי לשקם קשרים, לבנות אמון מחודש, וליצור מערכת יחסים יציבה ומיטיבה.', icon: '∞', tint: 'rgba(192,130,79,.12)', color: '#a86a3a' },
-  { title: 'הדרכת הורים',              desc: 'ליווי הורים בבניית קשר חם, מכיל ועקבי עם ילדיהם — כלים מעשיים לגבולות, תקשורת ותמיכה בכל שלבי הגדילה.', icon: '⌂', tint: 'rgba(58,90,64,.1)',   color: '#3a5a40' },
-];
+import { SPECIALTIES } from '../config/content';
 
 export default function Specialties() {
   return (
@@ -17,7 +9,6 @@ export default function Specialties() {
       style={{ background: '#f6efe1', borderTop: '1px solid rgba(44,40,35,.06)', borderBottom: '1px solid rgba(44,40,35,.06)', padding: 'clamp(48px,8vw,84px) clamp(20px,5vw,40px)', marginTop: 40 }}
     >
       <div style={{ maxWidth: 1160, margin: '0 auto' }}>
-        {/* Header */}
         <Reveal>
           <div className="text-center mx-auto mb-10" style={{ maxWidth: 640 }}>
             <p className="font-mono uppercase mb-3" style={{ fontSize: 13, letterSpacing: '.16em', color: '#8a4a20' }}>— תחומי טיפול</p>
@@ -32,7 +23,7 @@ export default function Specialties() {
 
         {/* Desktop: 2→3 col grid */}
         <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {CARDS.map((c, i) => (
+          {SPECIALTIES.map((c, i) => (
             <Reveal key={c.title} delay={[0,60,120,0,60,120][i]}>
               <div
                 className="bg-paper h-full cursor-default transition-all duration-300 hover:-translate-y-1"
@@ -52,7 +43,7 @@ export default function Specialties() {
         {/* Mobile: horizontal snap scroll */}
         <div className="sm:hidden flex gap-4 overflow-x-auto pb-3"
           style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', marginRight: -20, marginLeft: -20, paddingRight: 20, paddingLeft: 20 }}>
-          {CARDS.map(c => (
+          {SPECIALTIES.map(c => (
             <div key={c.title} className="bg-paper flex flex-col flex-shrink-0"
               style={{ width: '80vw', scrollSnapAlign: 'start', border: '1px solid rgba(44,40,35,.07)', borderRadius: 18, padding: 20 }}>
               <div className="flex items-center justify-center mb-3"

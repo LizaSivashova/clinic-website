@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Reveal from './Reveal';
+import { THERAPIST, CONTACT_TOPICS } from '../config/content';
 
-const TOPICS = ['חרדה ולחץ','דיכאון ועצב','הדרכת הורים','טיפול זוגי','נוער ומתבגרים','אבל ואובדן','אחר'];
-const EMPTY  = { name: '', phone: '', topic: 'חרדה ולחץ', message: '' };
+const EMPTY = { name: '', phone: '', topic: CONTACT_TOPICS[0], message: '' };
 
 const INPUT = {
   width: '100%', border: '1.5px solid rgba(44,40,35,.14)', borderRadius: 11,
@@ -49,9 +49,9 @@ export default function ContactForm() {
 
           <div className="flex flex-col gap-4">
             {[
-              { icon: '✆', bg: 'rgba(58,90,64,.1)',    color: '#3a5a40', label: 'טלפון',   value: '050-1234567',        ltr: true  },
-              { icon: '✉', bg: 'rgba(192,130,79,.12)',  color: '#a86a3a', label: 'דוא״ל',  value: 'demo@example.com', ltr: true  },
-              { icon: '⌖', bg: 'rgba(58,90,64,.1)',    color: '#3a5a40', label: 'קליניקה', value: 'רחוב הדוגמה 1, תל אביב',      ltr: false },
+              { icon: '✆', bg: 'rgba(58,90,64,.1)',   color: '#3a5a40', label: 'טלפון',   value: THERAPIST.phone,   href: THERAPIST.phoneHref, ltr: true  },
+              { icon: '✉', bg: 'rgba(192,130,79,.12)', color: '#a86a3a', label: 'דוא״ל',  value: THERAPIST.email,   href: `mailto:${THERAPIST.email}`, ltr: true  },
+              { icon: '⌖', bg: 'rgba(58,90,64,.1)',   color: '#3a5a40', label: 'קליניקה', value: THERAPIST.address, href: null, ltr: false },
             ].map(row => (
               <div key={row.label} className="flex items-center gap-3">
                 <span className="flex items-center justify-center rounded-xl flex-shrink-0"
@@ -98,7 +98,7 @@ export default function ContactForm() {
                 <label className="flex flex-col gap-1.5 font-semibold text-ink-nav" style={{ fontSize: 14 }}>
                   נושא הפנייה
                   <select value={form.topic} onChange={set('topic')} style={INPUT} onFocus={focus} onBlur={blur}>
-                    {TOPICS.map(t => <option key={t}>{t}</option>)}
+                    {CONTACT_TOPICS.map(t => <option key={t}>{t}</option>)}
                   </select>
                 </label>
                 <label className="flex flex-col gap-1.5 font-semibold text-ink-nav" style={{ fontSize: 14 }}>

@@ -1,4 +1,5 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { HERO, THERAPIST } from '../config/content';
 
 function scrollTo(id) {
   const el = document.getElementById(id);
@@ -28,7 +29,7 @@ export default function Hero() {
           style={{ background: 'rgba(58,90,64,.1)', padding: '7px 14px', borderRadius: 999, fontSize: 'clamp(12px,3vw,13.5px)' }}
         >
           <span className="dot-pulse rounded-full bg-forest" style={{ width: 7, height: 7, display: 'inline-block', flexShrink: 0 }} />
-          מקבלת פניות חדשות · 📍 תל אביב  ·  💻 אונליין
+          {HERO.badge} · 📍 {THERAPIST.city} · 💻 אונליין
         </div>
       </Rev>
 
@@ -38,23 +39,22 @@ export default function Hero() {
           className="font-display font-medium text-ink"
           style={{ fontSize: 'clamp(38px,8vw,72px)', lineHeight: 1.1, letterSpacing: '-.015em', margin: '0 0 22px' }}
         >
-          טיפול רגשי{' '}
-          <span className="text-terracotta-deep italic font-bold">בגובה עיניים</span>
+          {HERO.tagline}{' '}
+          <span className="text-terracotta-deep italic font-bold">{HERO.taglineEm}</span>
         </h1>
       </Rev>
 
       {/* Subtitle */}
       <Rev delay={160}>
         <p className="text-ink-soft" style={{ fontSize: 'clamp(16px,4vw,21px)', lineHeight: 1.62, maxWidth: 560, margin: '0 0 14px' }}>
-          כשהחיים מרגישים מורכבים – לא חייבים להתמודד עם הכול לבד.<br className="hidden sm:block" />{' '}
-          טיפול משולב CBT וטיפול דינמי, במרחב חם ובטוח.
+          {HERO.subtitle}
         </p>
       </Rev>
 
       {/* Pull-quote */}
       <Rev delay={220}>
         <p className="font-display italic text-terracotta-deep" style={{ fontSize: 'clamp(15px,3.5vw,19px)', margin: '0 0 32px' }}>
-          ״הטיפול הנכון מתחיל במקום שבו יש הקשבה, אמון ונוכחות אמיתית.״
+          {HERO.pullQuote}
         </p>
       </Rev>
 
@@ -79,23 +79,21 @@ export default function Hero() {
           </button>
         </div>
       </Rev>
-      {/* Stats — forced single row, font scales down on small screens */}
+
+      {/* Stats */}
       <Rev delay={340}>
         <div className="flex items-center mt-10 justify-center flex-nowrap">
-          <div style={{ padding: '0 clamp(10px,3vw,36px)', textAlign: 'center' }}>
-            <div className="font-display font-bold text-forest" style={{ fontSize: 'clamp(20px,5vw,32px)', whiteSpace: 'nowrap' }}>+20</div>
-            <div className="text-muted" style={{ fontSize: 'clamp(10px,2.2vw,14px)', whiteSpace: 'nowrap' }}>שנות ניסיון</div>
-          </div>
-          <div style={{ width: 1, height: 36, background: 'rgba(44,40,35,.14)', flexShrink: 0 }} />
-          <div style={{ padding: '0 clamp(10px,3vw,36px)', textAlign: 'center' }}>
-            <div className="font-display font-bold text-forest" style={{ fontSize: 'clamp(14px,3.5vw,28px)', whiteSpace: 'nowrap' }}>מבוגרים ונוער</div>
-            <div className="text-muted" style={{ fontSize: 'clamp(10px,2.2vw,14px)', whiteSpace: 'nowrap' }}>פרטני וזוגי</div>
-          </div>
-          <div style={{ width: 1, height: 36, background: 'rgba(44,40,35,.14)', flexShrink: 0 }} />
-          <div style={{ padding: '0 clamp(10px,3vw,36px)', textAlign: 'center' }}>
-            <div className="font-display font-bold text-forest" style={{ fontSize: 'clamp(20px,5vw,32px)', whiteSpace: 'nowrap' }}>CBT</div>
-            <div className="text-muted" style={{ fontSize: 'clamp(10px,2.2vw,14px)', whiteSpace: 'nowrap' }}>גישה אינטגרטיבית</div>
-          </div>
+          {HERO.stats.map((s, i) => (
+            <>
+              <div key={s.label} style={{ padding: '0 clamp(10px,3vw,36px)', textAlign: 'center' }}>
+                <div className="font-display font-bold text-forest" style={{ fontSize: 'clamp(14px,3.5vw,32px)', whiteSpace: 'nowrap' }}>{s.value}</div>
+                <div className="text-muted" style={{ fontSize: 'clamp(10px,2.2vw,14px)', whiteSpace: 'nowrap' }}>{s.label}</div>
+              </div>
+              {i < HERO.stats.length - 1 && (
+                <div key={`div-${i}`} style={{ width: 1, height: 36, background: 'rgba(44,40,35,.14)', flexShrink: 0 }} />
+              )}
+            </>
+          ))}
         </div>
       </Rev>
     </header>

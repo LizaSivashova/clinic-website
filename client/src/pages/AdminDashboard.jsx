@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { THERAPIST } from '../config/content';
 import Overview from '../components/dashboard/Overview';
 import SubmissionsTable from '../components/dashboard/SubmissionsTable';
 import Settings from '../components/dashboard/Settings';
@@ -45,9 +46,9 @@ export default function AdminDashboard() {
       <div style={{ padding: '0 22px 24px', borderBottom: '1px solid rgba(216,207,190,.1)', marginBottom: 14 }}>
         <div className="flex items-center gap-3">
           <span className="flex items-center justify-center rounded-full flex-shrink-0"
-            style={{ width: 40, height: 40, background: '#c0824f', color: '#2c2823', fontSize: 21, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>צ</span>
+            style={{ width: 40, height: 40, background: '#c0824f', color: '#2c2823', fontSize: 21, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>{THERAPIST.initial}</span>
           <div>
-            <div style={{ fontSize: 16, color: '#fbf7ef', fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>ישראלה ישראלי</div>
+            <div style={{ fontSize: 16, color: '#fbf7ef', fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>{THERAPIST.name}</div>
             <div className="font-mono" style={{ fontSize: 10.5, color: '#8a7a64', letterSpacing: '.12em' }}>admin panel</div>
           </div>
         </div>

@@ -1,10 +1,5 @@
 import Reveal from './Reveal';
-
-const CARDS = [
-  { quote: 'הגעתי שבורה אחרי תקופה קשה. ישראלה נתנה לי כלים אמיתיים ויחס חם שאי אפשר לתאר. היום אני נושמת אחרת.',    initial: 'מ', name: 'מ., בת 34', tag: 'טיפול בחרדה',  tint: 'rgba(192,130,79,.16)', color: '#a86a3a', delay: 0   },
-  { quote: 'כהורים היינו אבודים מול הבן המתבגר. ההדרכה שינתה את כל הדינמיקה בבית. סוף סוף מקשיבים אחד לשני.',     initial: 'ד', name: 'ד. ונ.',    tag: 'הדרכת הורים', tint: 'rgba(58,90,64,.12)',   color: '#3a5a40', delay: 90  },
-  { quote: 'מקצועיות וחמלה במינון מושלם. ישראלה ראתה אותי גם כשאני לא הצלחתי לראות את עצמי. תודה על הכול.',        initial: 'ש', name: 'ש., בת 41', tag: 'טיפול רגשי',  tint: 'rgba(192,130,79,.16)', color: '#a86a3a', delay: 180 },
-];
+import { TESTIMONIALS } from '../config/content';
 
 export default function Testimonials() {
   return (
@@ -19,9 +14,9 @@ export default function Testimonials() {
           </div>
         </Reveal>
 
-        {/* Mobile: horizontal snap scroll. Desktop: 3-col grid */}
+        {/* Desktop: 3-col grid */}
         <div className="hidden md:grid md:grid-cols-3 gap-5">
-          {CARDS.map(c => (
+          {TESTIMONIALS.map(c => (
             <Reveal key={c.name} delay={c.delay}>
               <div className="bg-paper flex flex-col h-full"
                 style={{ border: '1px solid rgba(44,40,35,.07)', borderRadius: 20, padding: 28, boxShadow: '0 10px 30px rgba(44,40,35,.06)' }}>
@@ -40,9 +35,9 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Mobile horizontal scroll */}
+        {/* Mobile: horizontal snap scroll */}
         <div className="md:hidden flex gap-4 overflow-x-auto pb-3" style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', marginRight: -20, marginLeft: -20, paddingRight: 20, paddingLeft: 20 }}>
-          {CARDS.map(c => (
+          {TESTIMONIALS.map(c => (
             <div key={c.name} className="bg-paper flex flex-col flex-shrink-0"
               style={{ width: 'calc(85vw)', scrollSnapAlign: 'start', border: '1px solid rgba(44,40,35,.07)', borderRadius: 20, padding: 22, boxShadow: '0 8px 24px rgba(44,40,35,.07)' }}>
               <div className="font-display text-terracotta" style={{ fontSize: 38, lineHeight: .6, marginBottom: 12 }}>״</div>

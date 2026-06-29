@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { THERAPIST } from '../config/content';
 
 const NAV_LINKS = [
   { label: 'אודות',       id: 'zt-about' },
@@ -25,7 +26,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  // Close drawer on resize to desktop
   useEffect(() => {
     const handler = () => { if (window.innerWidth >= 1024) setOpen(false); };
     window.addEventListener('resize', handler);
@@ -56,12 +56,12 @@ export default function Navbar() {
             className="flex items-center justify-center rounded-full text-paper flex-shrink-0"
             style={{ width: 38, height: 38, background: '#3a5a40', fontSize: 20, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}
           >
-            צ
+            {THERAPIST.initial}
           </span>
           <span className="flex flex-col leading-tight" style={{ textAlign: 'right' }}>
-            <span className="text-ink" style={{ fontFamily: '"Heebo", sans-serif', fontWeight: 800, fontSize: 19, letterSpacing: '.02em' }}>ישראלה ישראלי</span>
+            <span className="text-ink" style={{ fontFamily: '"Heebo", sans-serif', fontWeight: 800, fontSize: 19, letterSpacing: '.02em' }}>{THERAPIST.name}</span>
             <span className="font-mono uppercase text-muted hidden sm:block" style={{ fontSize: 8.5, letterSpacing: '.16em' }}>
-              Clinical Social Worker · Tel Aviv
+              {THERAPIST.navSubtitle}
             </span>
           </span>
         </button>

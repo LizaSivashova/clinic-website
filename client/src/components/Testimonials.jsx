@@ -27,7 +27,7 @@ export default function Testimonials() {
                     style={{ width: 40, height: 40, background: c.tint, color: c.color, fontSize: 17 }}>{c.initial}</span>
                   <div>
                     <div className="font-bold text-ink" style={{ fontSize: 14 }}>{c.name}</div>
-                    <div className="text-muted" style={{ fontSize: 12.5 }}>{c.tag}</div>
+                    <div style={{ fontSize: 12.5, color: '#6b5d4f' }}>{c.tag}</div>
                   </div>
                 </div>
               </div>
@@ -47,7 +47,7 @@ export default function Testimonials() {
                   style={{ width: 38, height: 38, background: c.tint, color: c.color, fontSize: 16 }}>{c.initial}</span>
                 <div>
                   <div className="font-bold text-ink" style={{ fontSize: 13.5 }}>{c.name}</div>
-                  <div className="text-muted" style={{ fontSize: 12 }}>{c.tag}</div>
+                  <div style={{ fontSize: 12, color: '#6b5d4f' }}>{c.tag}</div>
                 </div>
               </div>
             </div>

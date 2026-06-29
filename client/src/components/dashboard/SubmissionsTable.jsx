@@ -72,9 +72,13 @@ export default function SubmissionsTable({ submissions }) {
             <thead>
               <tr style={{ background: 'rgba(44,40,35,.04)', borderBottom: '1px solid rgba(44,40,35,.08)' }}>
                 {COLS.map(c => (
-                  <th key={c.key} onClick={() => toggleSort(c.key)}
-                    style={{ padding: '12px 16px', fontWeight: 600, color: '#5b5347', cursor: 'pointer', whiteSpace: 'nowrap', userSelect: 'none' }}>
-                    {c.label}{sort.key === c.key && (sort.dir === 'asc' ? ' ▲' : ' ▼')}
+                  <th key={c.key} scope="col"
+                    aria-sort={sort.key === c.key ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'}
+                    style={{ padding: 0, fontWeight: 600, color: '#5b5347', whiteSpace: 'nowrap' }}>
+                    <button onClick={() => toggleSort(c.key)}
+                      style={{ display: 'block', width: '100%', padding: '12px 16px', background: 'none', border: 'none', cursor: 'pointer', font: 'inherit', color: 'inherit', fontWeight: 600, textAlign: 'right', userSelect: 'none' }}>
+                      {c.label}{sort.key === c.key && (sort.dir === 'asc' ? ' ▲' : ' ▼')}
+                    </button>
                   </th>
                 ))}
               </tr>

@@ -1,48 +1,45 @@
-import { submissionsRepo, type Submission } from '../db/submissions.repository';
-
-const parse = (s: Submission) => new Date(`${s.created_at}Z`);
+import { submissionsRepo } from '../db/submissions.repository';
 
 export const statsService = {
   compute() {
-    const subs = submissionsRepo.findAll();
     const now = new Date();
 
     const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay());
-    startOfWeek.setHours(0, 0, 0, 0);
-    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    startOfWeek.setUTCDate(now.getUTCDate() - now.getUTCDay());
+    startOfWeek.setUTCHours(0, 0, 0, 0);
+    const startOfMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
 
-    const total = subs.length;
-    const thisMonth = subs.filter((s) => parse(s) >= startOfMonth).length;
-    const thisWeek = subs.filter((s) => parse(s) >= startOfWeek).length;
+    const total      = submissionsRepo.total();
+    const thisMonth  = submissionsRepo.countSince(startOfMonth.toISOString().slice(0, 10));
+    const thisWeek   = submissionsRepo.countSince(startOfWeek.toISOString().slice(0, 10));
 
-    const topicCounts: Record<string, number> = {};
-    for (const s of subs) topicCounts[s.topic] = (topicCounts[s.topic] ?? 0) + 1;
-    const topTopic = Object.entries(topicCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? '—';
+    const topicRows  = submissionsRepo.topicCounts();
+    const topicCounts: Record<string, number> = Object.fromEntries(topicRows.map(r => [r.topic, r.count]));
+    const topTopic   = topicRows[0]?.topic ?? '—';
 
+    const dailyMap   = new Map(submissionsRepo.dailyCounts().map(r => [r.date, r.count]));
     const daily: { date: string; count: number }[] = [];
     for (let i = 29; i >= 0; i--) {
       const d = new Date(now);
-      d.setDate(now.getDate() - i);
+      d.setUTCDate(now.getUTCDate() - i);
       const key = d.toISOString().slice(0, 10);
-      daily.push({
-        date: key,
-        count: subs.filter((s) => parse(s).toISOString().slice(0, 10) === key).length,
-      });
+      daily.push({ date: key, count: dailyMap.get(key) ?? 0 });
     }
 
-    const byDayOfWeek = Array.from({ length: 7 }, () => 0);
-    const byHour = Array.from({ length: 24 }, () => 0);
-    for (const s of subs) {
-      byDayOfWeek[parse(s).getDay()]! += 1;
-      byHour[parse(s).getHours()]! += 1;
-    }
+    const byDayOfWeek = Array.from<number>({ length: 7 }).fill(0);
+    for (const r of submissionsRepo.byDow()) byDayOfWeek[r.dow] = r.count;
+
+    const byHour = Array.from<number>({ length: 24 }).fill(0);
+    for (const r of submissionsRepo.byHour()) byHour[r.hour] = r.count;
 
     let avgPerWeek = 0;
-    if (subs.length) {
-      const earliest = subs.reduce<Date>((min, s) => (parse(s) < min ? parse(s) : min), parse(subs[0]!));
-      const weeks = Math.max(1, (now.getTime() - earliest.getTime()) / (1000 * 60 * 60 * 24 * 7));
-      avgPerWeek = +(subs.length / weeks).toFixed(1);
+    if (total > 0) {
+      const earliestStr = submissionsRepo.earliest();
+      if (earliestStr) {
+        const earliest = new Date(`${earliestStr}Z`);
+        const weeks = Math.max(1, (now.getTime() - earliest.getTime()) / (1000 * 60 * 60 * 24 * 7));
+        avgPerWeek = +(total / weeks).toFixed(1);
+      }
     }
 
     return {
@@ -55,7 +52,7 @@ export const statsService = {
       byDayOfWeek,
       byHour,
       avgPerWeek,
-      recent: subs.slice(0, 5),
+      recent: submissionsRepo.recent(5),
     };
   },
 };

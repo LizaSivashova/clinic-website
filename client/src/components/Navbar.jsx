@@ -34,6 +34,7 @@ export default function Navbar() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">דלג לתוכן הראשי</a>
       <nav
         dir="rtl"
         className="fixed inset-x-0 top-0 z-30 flex items-center justify-between transition-shadow duration-300"
@@ -96,7 +97,7 @@ export default function Navbar() {
           <button
             onClick={() => scrollTo('zt-contact')}
             className="font-semibold text-paper cursor-pointer"
-            style={{ fontSize: 13, padding: '9px 16px', borderRadius: 999, background: '#c0824f', border: 'none' }}
+            style={{ fontSize: 13, padding: '9px 16px', borderRadius: 999, background: '#9a5e2e', border: 'none' }}
           >
             קביעת פגישה
           </button>

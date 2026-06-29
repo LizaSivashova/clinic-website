@@ -57,7 +57,7 @@ export default function ContactForm() {
                 <span className="flex items-center justify-center rounded-xl flex-shrink-0"
                   style={{ width: 44, height: 44, background: row.bg, color: row.color, fontSize: 19 }}>{row.icon}</span>
                 <div>
-                  <div className="text-muted" style={{ fontSize: 12.5 }}>{row.label}</div>
+                  <div style={{ fontSize: 13, color: '#6b5d4f' }}>{row.label}</div>
                   <div className="font-semibold text-ink" style={{ fontSize: 15, direction: row.ltr ? 'ltr' : undefined, textAlign: row.ltr ? 'right' : undefined }}>{row.value}</div>
                 </div>
               </div>
@@ -69,19 +69,22 @@ export default function ContactForm() {
         <Reveal delay={140}>
           <div className="bg-paper"
             style={{ border: '1px solid rgba(44,40,35,.08)', borderRadius: 22, padding: 'clamp(22px,5vw,34px)', boxShadow: '0 24px 60px rgba(44,40,35,.1)' }}>
-            {status === 'sent' ? (
-              <div className="flex flex-col items-center text-center" style={{ padding: '32px 10px' }}>
-                <div className="flex items-center justify-center rounded-full text-forest mb-4"
-                  style={{ width: 68, height: 68, background: 'rgba(58,90,64,.12)', fontSize: 32 }}>✓</div>
-                <h3 className="font-display text-ink mb-2" style={{ fontSize: 24 }}>הפנייה נשלחה</h3>
-                <p className="text-ink-soft mb-5" style={{ fontSize: 15 }}>תודה שפניתם. אחזור אליכם בהקדם.</p>
-                <button onClick={() => setStatus('idle')}
-                  className="cursor-pointer font-semibold text-terracotta-deep"
-                  style={{ border: '1.5px solid #c0824f', background: 'transparent', padding: '11px 22px', borderRadius: 999, fontSize: 15 }}>
-                  שליחת פנייה נוספת
-                </button>
-              </div>
-            ) : (
+            <div role="status" aria-live="polite" aria-atomic="true">
+              {status === 'sent' && (
+                <div className="flex flex-col items-center text-center" style={{ padding: '32px 10px' }}>
+                  <div className="flex items-center justify-center rounded-full text-forest mb-4"
+                    style={{ width: 68, height: 68, background: 'rgba(58,90,64,.12)', fontSize: 32 }}>✓</div>
+                  <h3 className="font-display text-ink mb-2" style={{ fontSize: 24 }}>הפנייה נשלחה</h3>
+                  <p className="text-ink-soft mb-5" style={{ fontSize: 15 }}>תודה שפניתם. אחזור אליכם בהקדם.</p>
+                  <button onClick={() => setStatus('idle')}
+                    className="cursor-pointer font-semibold text-terracotta-deep"
+                    style={{ border: '1.5px solid #c0824f', background: 'transparent', padding: '11px 22px', borderRadius: 999, fontSize: 15 }}>
+                    שליחת פנייה נוספת
+                  </button>
+                </div>
+              )}
+            </div>
+            {status !== 'sent' && (
               <form onSubmit={submit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <label className="flex flex-col gap-1.5 font-semibold text-ink-nav" style={{ fontSize: 14 }}>
@@ -120,17 +123,19 @@ export default function ContactForm() {
                     placeholder="מה מביא אתכם לפנות? (לא חובה)"
                     style={{ ...INPUT, resize: 'vertical' }} onFocus={focus} onBlur={blur} />
                 </label>
-                {status === 'error' && (
-                  <p className="text-clay text-sm rounded-lg px-3 py-2" style={{ background: 'rgba(154,74,58,.08)' }}>
-                    אירעה שגיאה, אנא נסו שוב.
-                  </p>
-                )}
+                <div role="alert" aria-live="assertive">
+                  {status === 'error' && (
+                    <p className="text-clay text-sm rounded-lg px-3 py-2" style={{ background: 'rgba(154,74,58,.08)' }}>
+                      אירעה שגיאה, אנא נסו שוב.
+                    </p>
+                  )}
+                </div>
                 <button type="submit" disabled={status === 'sending'}
                   className="w-full font-bold text-paper cursor-pointer transition-all hover:-translate-y-0.5 disabled:opacity-60"
                   style={{ fontSize: 16, padding: 14, borderRadius: 12, border: 'none', background: '#3a5a40', boxShadow: '0 10px 26px rgba(58,90,64,.28)', marginTop: 4 }}>
                   {status === 'sending' ? 'שולח…' : 'שליחת הפנייה'}
                 </button>
-                <p className="text-center text-muted" style={{ fontSize: 12, margin: '2px 0 0' }}>
+                <p className="text-center" style={{ fontSize: 12, margin: '2px 0 0', color: '#6b5d4f' }}>
                   בלחיצה אני מאשר/ת יצירת קשר חוזר · פרטיותך נשמרת
                 </p>
               </form>

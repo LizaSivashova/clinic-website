@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express, { type Express } from 'express';
+import compression from 'compression';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -18,6 +19,8 @@ export function createApp(): Express {
   const app = express();
 
   app.set('trust proxy', 1);
+
+  app.use(compression());
 
   // ---- Security & platform middleware ----
   app.use(

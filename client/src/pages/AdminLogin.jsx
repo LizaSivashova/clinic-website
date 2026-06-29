@@ -93,11 +93,13 @@ export default function AdminLogin() {
               placeholder="••••••••" style={INPUT} onFocus={focus} onBlur={blur} autoComplete="current-password" />
           </label>
 
-          {error && (
-            <p className="text-clay text-sm rounded-lg px-3 py-2" style={{ background: 'rgba(154,74,58,.08)', fontSize: 13.5 }}>
-              פרטי התחברות שגויים.
-            </p>
-          )}
+          <div role="alert" aria-live="assertive">
+            {error && (
+              <p className="text-clay text-sm rounded-lg px-3 py-2" style={{ background: 'rgba(154,74,58,.08)', fontSize: 13.5 }}>
+                פרטי התחברות שגויים.
+              </p>
+            )}
+          </div>
 
           <button
             type="submit"

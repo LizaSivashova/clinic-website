@@ -82,7 +82,7 @@ export default function Settings() {
           </span>
         </label>
 
-        {emailMsg && <p className={`mt-4 ${msgCls(emailMsg)}`}>{emailMsg.text}</p>}
+        <div role="status" aria-live="polite">{emailMsg && <p className={`mt-4 ${msgCls(emailMsg)}`}>{emailMsg.text}</p>}</div>
 
         <button className="mt-5 w-full rounded-full bg-clay py-3 font-semibold text-white transition-colors hover:bg-clay-dark">
           שמירת הגדרות
@@ -99,7 +99,7 @@ export default function Settings() {
         <label className="mb-1 mt-4 block text-sm font-medium text-bark">סיסמה חדשה</label>
         <input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} className={field} autoComplete="new-password" />
 
-        {pwMsg && <p className={`mt-4 ${msgCls(pwMsg)}`}>{pwMsg.text}</p>}
+        <div role="status" aria-live="polite">{pwMsg && <p className={`mt-4 ${msgCls(pwMsg)}`}>{pwMsg.text}</p>}</div>
 
         {pwHash && (
           <div className="mt-3 rounded-xl bg-cream-dark/50 p-3">

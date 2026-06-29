@@ -25,7 +25,7 @@ export default function LandingPage() {
       <AmbientOrbs />
       <Particles />
       <Navbar />
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      <main id="main-content" style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <About />
         <Specialties />

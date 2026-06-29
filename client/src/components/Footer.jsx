@@ -36,7 +36,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="font-mono uppercase mb-3" style={{ fontSize: 10.5, letterSpacing: '.16em', color: '#8a7a64' }}>ניווט</p>
+            <p className="font-mono uppercase mb-3" style={{ fontSize: 10.5, letterSpacing: '.16em', color: '#b3a994' }}>ניווט</p>
             <div className="flex flex-col gap-2">
               {NAV.map(l => (
                 <button key={l.id} onClick={() => scrollTo(l.id)}
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="font-mono uppercase mb-3" style={{ fontSize: 10.5, letterSpacing: '.16em', color: '#8a7a64' }}>פרטי קשר</p>
+            <p className="font-mono uppercase mb-3" style={{ fontSize: 10.5, letterSpacing: '.16em', color: '#b3a994' }}>פרטי קשר</p>
             <div style={{ fontSize: 14.5, lineHeight: 1.9, color: '#b3a994' }}>
               <a href={THERAPIST.phoneHref} style={{ color: '#b3a994', textDecoration: 'none', display: 'block', direction: 'ltr', textAlign: 'right' }}>{THERAPIST.phone}</a>
               <a href={`mailto:${THERAPIST.email}`} style={{ color: '#b3a994', textDecoration: 'none', display: 'block' }}>{THERAPIST.email}</a>
@@ -62,11 +62,11 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-wrap justify-between items-center gap-2 pt-5"
-          style={{ fontSize: 12.5, color: '#8a7a64' }}>
+          style={{ fontSize: 12.5, color: '#b3a994' }}>
           <span>© {THERAPIST.copyrightYear} {THERAPIST.name} · כל הזכויות שמורות</span>
           <button onClick={() => navigate('/admin/login')}
             className="font-mono cursor-pointer hover:text-muted-light transition-colors"
-            style={{ fontSize: 11.5, color: '#8a7a64', background: 'none', border: 'none' }}>
+            style={{ fontSize: 11.5, color: '#b3a994', background: 'none', border: 'none' }}>
             admin →
           </button>
         </div>

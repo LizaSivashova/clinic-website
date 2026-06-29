@@ -33,3 +33,35 @@ jobs:
       # ---- Frontend ----
       - name: Build client
         run: npm --prefix client run build
+
+      # ---- Server production build ----
+      - name: Build server
+        run: npm --prefix server run build
+
+      # ---- Lighthouse CI ----
+      - name: Start server for Lighthouse
+        env:
+          NODE_ENV: production
+          PORT: 4000
+          JWT_SECRET: ci-lighthouse-secret-at-least-16-chars
+          ADMIN_USERNAME: admin
+          ADMIN_PASSWORD_HASH: "$2a$10$sWCLPmHYK7cKJ82q.bXkgusfu.wrzXLQVeADjxBn4mUAsPRhypJbm"
+          CLIENT_ORIGIN: http://localhost:4000
+          GMAIL_USER: ""
+          GMAIL_APP_PASSWORD: ""
+          ADMIN_NOTIFICATION_EMAIL: ""
+        run: node dist/src/server.js &
+        working-directory: server
+
+      - name: Wait for server to be ready
+        run: |
+          echo "Waiting for server on port 4000..."
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:4000/api/health && echo "Server ready" && break
+            sleep 1
+          done
+
+      - name: Run Lighthouse CI
+        run: npx lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

@@ -1,8 +1,6 @@
-# ישראלה ישראלי — אתר וקליניקה דיגיטלית
+# Clinic Website
 
-Full-stack web app for **Demo Therapist**, a clinical social worker in Tel Aviv, Israel.
-A warm, RTL Hebrew landing page plus a private admin dashboard for managing
-contact-form submissions.
+Full-stack landing site for a private therapy clinic with a private admin dashboard for managing contact-form submissions.
 
 - **Frontend:** React + Vite + Tailwind CSS (RTL, Hebrew)
 - **Backend:** Node.js + Express, written in **TypeScript** (layered architecture)
@@ -17,7 +15,7 @@ contact-form submissions.
 ## Project structure
 
 ```
-therapy-clinic/
+clinic-website/
 ├── client/                # React + Vite frontend
 │   └── src/
 │       ├── pages/         # LandingPage, AdminLogin, AdminDashboard
@@ -55,13 +53,13 @@ npm test            # Vitest + Supertest
 
 ## 1. Generate a Gmail App Password
 
-The contact form emails Demo on every submission. Gmail requires an **App
+The contact form emails the clinic owner on every submission. Gmail requires an **App
 Password** (a 16-character token), not your normal password.
 
 1. Go to <https://myaccount.google.com/security>.
 2. Enable **2-Step Verification** (required before App Passwords appear).
 3. Visit <https://myaccount.google.com/apppasswords>.
-4. Choose **Mail** as the app, give it a name like `Demo Site`, and click **Create**.
+4. Choose **Mail** as the app, give it a name, and click **Create**.
 5. Copy the 16-character password (shown as `xxxx xxxx xxxx xxxx`). You'll paste
    it into `.env` as `GMAIL_APP_PASSWORD`. Spaces are fine.
 
@@ -84,12 +82,12 @@ Then edit `.env`:
 PORT=4000
 JWT_SECRET=<long random string — e.g. run: openssl rand -hex 32>
 
-ADMIN_USERNAME=demo
+ADMIN_USERNAME=admin
 ADMIN_PASSWORD_HASH=<generated in step 4>
 
-GMAIL_USER=demo@example.com
+GMAIL_USER=your@gmail.com
 GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
-ADMIN_NOTIFICATION_EMAIL=demo@example.com
+ADMIN_NOTIFICATION_EMAIL=your@gmail.com
 ```
 
 The `.env` file lives at the **project root** and is read by the server.
@@ -166,17 +164,17 @@ Copy that whole line into `.env`. Restart the server to apply.
 
 ## API routes
 
-| Method | Route                     | Auth | Description                                 |
-|--------|---------------------------|------|---------------------------------------------|
-| GET    | `/api/health`             | —    | Health check                                |
-| POST   | `/api/contact`            | —    | Save submission, email Demo (rate-limited)  |
-| POST   | `/api/admin/login`        | —    | Access token + sets httpOnly refresh cookie |
-| POST   | `/api/admin/refresh`      | 🍪   | Rotate refresh cookie, return access token  |
-| POST   | `/api/admin/logout`       | 🍪   | Revoke refresh token, clear cookie          |
-| GET    | `/api/admin/submissions`  | ✅   | All submissions                             |
-| GET    | `/api/admin/stats`        | ✅   | Aggregated dashboard stats                  |
-| GET    | `/api/admin/settings`     | ✅   | Current settings                            |
-| PUT    | `/api/admin/settings`     | ✅   | Update email / toggle / password            |
+| Method | Route                     | Auth | Description                                        |
+|--------|---------------------------|------|----------------------------------------------------|
+| GET    | `/api/health`             | —    | Health check                                       |
+| POST   | `/api/contact`            | —    | Save submission, email the clinic (rate-limited)   |
+| POST   | `/api/admin/login`        | —    | Access token + sets httpOnly refresh cookie        |
+| POST   | `/api/admin/refresh`      | 🍪   | Rotate refresh cookie, return access token         |
+| POST   | `/api/admin/logout`       | 🍪   | Revoke refresh token, clear cookie                 |
+| GET    | `/api/admin/submissions`  | ✅   | All submissions                                    |
+| GET    | `/api/admin/stats`        | ✅   | Aggregated dashboard stats                         |
+| GET    | `/api/admin/settings`     | ✅   | Current settings                                   |
+| PUT    | `/api/admin/settings`     | ✅   | Update email / toggle / password                   |
 
 ✅ routes require an `Authorization: Bearer <accessToken>` header (15-min
 access token). 🍪 routes use the httpOnly refresh cookie (7-day, rotated on
@@ -187,8 +185,7 @@ each use, revocable in the DB). The client keeps the access token in
 
 ## Notes
 
-- The SQLite database file (`server/src/db/app.sqlite`) is created automatically
-  on first run and is git-ignored. Tests use an in-memory database.
+- The SQLite database file is created automatically on first run and is git-ignored. Tests use an in-memory database.
 - If Gmail credentials are missing, the server still runs and saves
   submissions — it just logs a warning and skips sending email.
 - Email notifications can be toggled on/off and the destination address changed

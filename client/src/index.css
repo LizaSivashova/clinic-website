@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-cream text-ink font-body;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+  }
+  ::selection { background: #c0824f; color: #fbf7ef; }
+  input, textarea, select, button { font-family: inherit; }
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-thumb {
+    background: #cdbfa6;
+    border-radius: 8px;
+    border: 3px solid #f1e9da;
+  }
+}
+
+/* ── Scroll-reveal ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  .9s cubic-bezier(.2,.7,.2,1),
+    transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── Ambient orb animations ────────────────────────────── */
+@keyframes zt-orb {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(28px,-34px) scale(1.08); }
+  100% { transform: translate(0,0) scale(1); }
+}
+@keyframes zt-orb2 {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(-30px,26px) scale(1.12); }
+  100% { transform: translate(0,0) scale(1); }
+}
+.orb-1 { animation: zt-orb  18s ease-in-out infinite; }
+.orb-2 { animation: zt-orb2 22s ease-in-out infinite; }
+.orb-3 { animation: zt-orb  26s ease-in-out infinite; }
+
+/* ── Particle rise ─────────────────────────────────────── */
+@keyframes zt-rise {
+  0%   { transform: translateY(0);    opacity: 0;   }
+  10%  { opacity: .7; }
+  90%  { opacity: .7; }
+  100% { transform: translateY(-120px); opacity: 0; }
+}
+
+/* ── WhatsApp pulse ─────────────────────────────────────── */
+@keyframes zt-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(37,211,102,.5); }
+  70%  { box-shadow: 0 0 0 16px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0   rgba(37,211,102,0); }
+}
+.wa-pulse { animation: zt-pulse 2.6s infinite; }
+
+/* ── About badge bob ────────────────────────────────────── */
+@keyframes zt-bob {
+  0%   { transform: translateY(0)    rotate(-1.5deg); }
+  50%  { transform: translateY(-10px) rotate(1.5deg); }
+  100% { transform: translateY(0)    rotate(-1.5deg); }
+}
+.bob { animation: zt-bob 8s ease-in-out infinite; }
+
+/* ── Hero badge pulse ───────────────────────────────────── */
+@keyframes dot-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(58,90,64,.45); }
+  70%  { box-shadow: 0 0 0 16px rgba(58,90,64,0); }
+  100% { box-shadow: 0 0 0 0   rgba(58,90,64,0); }
+}
+.dot-pulse { animation: dot-pulse 2.4s infinite; }
+
+/* ── Admin dashboard toggle knob ────────────────────────── */
+.toggle-track  { width:48px; height:27px; border-radius:999px; border:none; cursor:pointer; position:relative; transition:background .2s; }
+.toggle-knob   { position:absolute; top:3px; width:21px; height:21px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.2); transition:all .2s; }
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .orb-1,.orb-2,.orb-3,.wa-pulse,.bob,.dot-pulse { animation: none; }
+  .reveal { opacity:1; transform:none; transition:none; }
+}

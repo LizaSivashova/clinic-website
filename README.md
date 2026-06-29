@@ -6,13 +6,25 @@ Full-stack landing site for a private therapy clinic with a private admin dashbo
 
 ## Demo
 
-### Landing Page — Desktop
-![Landing page desktop demo](docs/landing-page-website.gif)
+### Landing Page
 
-### Landing Page — Mobile
-![Landing page mobile demo](docs/landing-page-phone.gif)
+A fully responsive RTL Hebrew landing page for a private therapy clinic. Features scroll-reveal animations, ambient particle effects, a contact form, client testimonials, and a treatment specialties section — all styled with an earth-tone design system.
+
+<table>
+  <tr>
+    <th>Desktop</th>
+    <th>Mobile</th>
+  </tr>
+  <tr>
+    <td><img src="docs/landing-page-website.gif" alt="Landing page desktop"/></td>
+    <td><img src="docs/landing-page-phone.gif" alt="Landing page mobile"/></td>
+  </tr>
+</table>
 
 ### Admin Dashboard
+
+A private admin panel (JWT-protected) for managing incoming contact form submissions. Includes an overview with stats and charts, a submissions table with full message view, and a settings panel for toggling email notifications and updating credentials.
+
 ![Admin dashboard demo](docs/admin-board-website.gif)
 
 - **Frontend:** React + Vite + Tailwind CSS (RTL, Hebrew)

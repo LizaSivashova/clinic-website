@@ -10,6 +10,9 @@ dist/
 npm-debug.log*
 *:Zone.Identifier
 client/src/config/content.js
+.env.playwright
+playwright-report/
+test-results/
 client/src/assets/animation.*
 client/src/assets/anxious_woman.*
 client/src/assets/bad_bubble_*

@@ -10,7 +10,7 @@ describe('POST /api/contact', () => {
       name: 'דנה',
       phone: '050-1234567',
       email: 'dana@example.com',
-      topic: 'חרדה',
+      topic: 'חרדה ולחץ',
       message: 'אשמח לקבוע פגישה',
     });
     expect(res.status).toBe(201);
@@ -29,6 +29,49 @@ describe('POST /api/contact', () => {
     expect(res.body.ok).toBe(false);
     expect(Array.isArray(res.body.errors)).toBe(true);
     expect(res.body.errors.length).toBeGreaterThan(0);
+  });
+
+  it('rejects missing name', async () => {
+    const res = await request(app).post('/api/contact').send({
+      name: '', phone: '0501234567', email: 'test@example.com',
+      topic: 'חרדה ולחץ', message: 'שלום',
+    });
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toContain('שם מלא נדרש');
+  });
+
+  it('rejects phone with letters', async () => {
+    const res = await request(app).post('/api/contact').send({
+      name: 'דנה', phone: 'abcdef', email: 'dana@example.com',
+      topic: 'חרדה ולחץ', message: 'שלום',
+    });
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toContain('מספר טלפון לא תקין');
+  });
+
+  it('rejects a badly formatted email', async () => {
+    const res = await request(app).post('/api/contact').send({
+      name: 'דנה', phone: '0501234567', email: 'notanemail',
+      topic: 'חרדה ולחץ', message: 'שלום',
+    });
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toContain('אימייל לא תקין');
+  });
+
+  it('accepts message at exactly 4000 chars (boundary)', async () => {
+    const res = await request(app).post('/api/contact').send({
+      name: 'דנה', phone: '0501234567', email: 'dana@example.com',
+      topic: 'אחר', message: 'א'.repeat(4000),
+    });
+    expect(res.status).toBe(201);
+  });
+
+  it('rejects message at 4001 chars', async () => {
+    const res = await request(app).post('/api/contact').send({
+      name: 'דנה', phone: '0501234567', email: 'dana@example.com',
+      topic: 'אחר', message: 'א'.repeat(4001),
+    });
+    expect(res.status).toBe(400);
   });
 
   it('rejects a disallowed topic', async () => {

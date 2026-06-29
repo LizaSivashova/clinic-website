@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Reveal from './Reveal';
 import { THERAPIST, CONTACT_TOPICS } from '../config/content';
 
-const EMPTY = { name: '', phone: '', topic: CONTACT_TOPICS[0], message: '' };
+const EMPTY = { name: '', phone: '', email: '', topic: CONTACT_TOPICS[0], message: '' };
 
 const INPUT = {
   width: '100%', border: '1.5px solid rgba(44,40,35,.14)', borderRadius: 11,
@@ -95,6 +95,19 @@ export default function ContactForm() {
                       style={{ ...INPUT, direction: 'ltr', textAlign: 'right' }} onFocus={focus} onBlur={blur} />
                   </label>
                 </div>
+                <label className="flex flex-col gap-1.5 font-semibold text-ink-nav" style={{ fontSize: 14 }}>
+                  דוא״ל
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={set('email')}
+                    placeholder="your@email.com"
+                    style={{ ...INPUT, direction: 'ltr', textAlign: 'right' }}
+                    onFocus={focus}
+                    onBlur={blur}
+                  />
+                </label>
                 <label className="flex flex-col gap-1.5 font-semibold text-ink-nav" style={{ fontSize: 14 }}>
                   נושא הפנייה
                   <select value={form.topic} onChange={set('topic')} style={INPUT} onFocus={focus} onBlur={blur}>

@@ -33,7 +33,7 @@ A private admin panel (JWT-protected) for managing incoming contact form submiss
 - **Email:** Nodemailer over Gmail SMTP
 - **Auth:** JWT access tokens + rotating refresh tokens in httpOnly cookies, RBAC, bcrypt
 - **Hardening:** Helmet, CORS, Zod request validation, per-route rate limiting, central error handling, structured logging (pino)
-- **Quality:** strict TypeScript, Vitest + Supertest tests, GitHub Actions CI
+- **Quality:** strict TypeScript, Vitest + Supertest tests, Playwright E2E tests, GitHub Actions CI
 
 ---
 
@@ -73,6 +73,69 @@ npm start           # run the server (tsx)
 npm run typecheck   # tsc --noEmit
 npm test            # Vitest + Supertest
 ```
+
+---
+
+## Testing
+
+The project has three layers of automated tests.
+
+### Layer 1 — API tests (Vitest + Supertest)
+
+Fast unit/integration tests that send HTTP requests directly to Express in memory — no browser, no real network. Cover validation rules, database persistence, auth flows, and security scenarios.
+
+```bash
+npm run test:api          # run all API + security tests (~1 second)
+npm --prefix server run test:watch  # re-run on file save (great while developing)
+```
+
+**Test files:**
+
+| File | What it covers |
+|---|---|
+| `server/tests/contact.test.ts` | Valid submission, missing fields, bad email/phone, message length boundaries |
+| `server/tests/auth.test.ts` | Login, httpOnly cookie, protected routes, refresh rotation, logout |
+| `server/tests/settings.test.ts` | Notification email save, persistence, email trigger on submission (mailer mocked) |
+| `server/tests/security.test.ts` | SQL injection, XSS, JWT forgery/expiry/reuse, settings auth, rate limiting |
+
+### Layer 2 — Security tests
+
+Included in the Vitest suite above (`security.test.ts`). Each test targets a specific attack and explains why the server blocks it:
+
+- **SQL injection** — parameterized queries via `better-sqlite3` treat values as data, never SQL
+- **XSS** — server stores payloads verbatim; React escapes on render, mailer uses `escapeHtml()`
+- **JWT forgery** — HMAC-SHA256 signature verification rejects any tampered token
+- **Token replay** — single-use refresh token rotation revokes the presented token immediately
+- **Brute-force** — per-route rate limiting (5 req/min contact, 10 req/15 min auth in production)
+- **Unauthenticated writes** — `requireAuth` middleware blocks all `/api/admin/*` routes
+
+### Layer 3 — Playwright E2E tests (browser)
+
+Playwright controls a real Chromium browser and tests the full user experience — forms, navigation, Hebrew RTL layout, React state transitions.
+
+**Setup (one-time):**
+
+```bash
+# Copy the credentials template and fill in the real admin password
+cp .env.playwright.example .env.playwright
+# Edit .env.playwright — set PLAYWRIGHT_ADMIN_PASSWORD to your actual admin password
+```
+
+**Run:**
+
+```bash
+npm run test:e2e        # headless (CI-style)
+npm run test:e2e:ui     # visual step-by-step UI — best for debugging
+npm run test:e2e:codegen  # record new tests by clicking through the site
+```
+
+**E2E test files:**
+
+| File | What it covers |
+|---|---|
+| `e2e/contact-form.spec.ts` | Email field present, empty form blocked, valid submit → success state, form reset |
+| `e2e/admin-login.spec.ts` | Wrong password shows Hebrew error, correct login redirects, unauthenticated /admin redirect |
+| `e2e/settings-email.spec.ts` | Notification email saves, persists across page reload |
 
 ---
 

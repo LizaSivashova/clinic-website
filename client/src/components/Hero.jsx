@@ -28,7 +28,7 @@ export default function Hero() {
           style={{ background: 'rgba(58,90,64,.1)', padding: '7px 14px', borderRadius: 999, fontSize: 'clamp(12px,3vw,13.5px)' }}
         >
           <span className="dot-pulse rounded-full bg-forest" style={{ width: 7, height: 7, display: 'inline-block', flexShrink: 0 }} />
-          מקבלת פניות חדשות · פגישה ראשונה ללא התחייבות
+          מקבלת פניות חדשות · 📍 תל אביב  ·  💻 אונליין
         </div>
       </Rev>
 
@@ -79,7 +79,6 @@ export default function Hero() {
           </button>
         </div>
       </Rev>
-
       {/* Stats — forced single row, font scales down on small screens */}
       <Rev delay={340}>
         <div className="flex items-center mt-10 justify-center flex-nowrap">

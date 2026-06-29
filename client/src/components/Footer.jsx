@@ -24,9 +24,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="flex items-center justify-center rounded-full font-display font-bold text-ink flex-shrink-0"
-                style={{ width: 38, height: 38, background: '#c0824f', fontSize: 19 }}>צ</span>
-              <span className="font-display font-bold" style={{ fontSize: 20, color: '#fbf7ef' }}>ישראלה ישראלי</span>
+              <span className="flex items-center justify-center rounded-full text-ink flex-shrink-0"
+                style={{ width: 38, height: 38, background: '#c0824f', fontSize: 19, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>צ</span>
+              <span style={{ fontSize: 20, color: '#fbf7ef', fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>ישראלה ישראלי</span>
             </div>
             <p style={{ fontSize: 14.5, lineHeight: 1.65, color: '#b3a994', maxWidth: 300, margin: 0 }}>
               עובדת סוציאלית קלינית, מומחית לטיפול בטראומה ויועצת זוגית מוסמכת. טיפול רגשי בגובה עיניים — למבוגרים, נוער וזוגות, תל אביב והסביבה.

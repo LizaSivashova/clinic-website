@@ -73,8 +73,8 @@ export default function AdminLogin() {
       >
         {/* Header */}
         <div className="flex flex-col items-center mb-7">
-          <span className="flex items-center justify-center rounded-full font-display font-bold text-paper mb-3"
-            style={{ width: 54, height: 54, background: '#3a5a40', fontSize: 26 }}>צ</span>
+          <span className="flex items-center justify-center rounded-full text-paper mb-3"
+            style={{ width: 54, height: 54, background: '#3a5a40', fontSize: 26, fontFamily: '"Heebo", sans-serif', fontWeight: 800 }}>צ</span>
           <h2 className="font-display font-bold text-ink m-0" style={{ fontSize: 26 }}>כניסת מנהל</h2>
           <p className="text-muted mt-1 mb-0" style={{ fontSize: 14 }}>לוח הבקרה של ישראלה ישראלי</p>
         </div>

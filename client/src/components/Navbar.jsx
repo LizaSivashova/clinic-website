@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const NAV_LINKS = [
   { label: 'אודות',       id: 'zt-about' },
@@ -18,7 +17,6 @@ function scrollTo(id, close) {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10);
@@ -85,13 +83,6 @@ export default function Navbar() {
         {/* Desktop actions */}
         <div className="hidden lg:flex items-center gap-4">
           <button
-            onClick={() => navigate('/admin/login')}
-            className="text-muted hover:text-forest transition-colors cursor-pointer"
-            style={{ fontSize: 14, background: 'none', border: 'none' }}
-          >
-            כניסת מנהל
-          </button>
-          <button
             onClick={() => scrollTo('zt-contact')}
             className="font-semibold text-paper cursor-pointer transition-all hover:-translate-y-0.5"
             style={{ fontSize: 14, padding: '10px 20px', borderRadius: 999, background: '#c0824f', border: 'none', boxShadow: '0 6px 18px rgba(192,130,79,.32)' }}
@@ -147,13 +138,6 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <button
-            onClick={() => { setOpen(false); navigate('/admin/login'); }}
-            className="text-muted cursor-pointer text-right mt-3"
-            style={{ fontSize: 14, background: 'none', border: 'none', padding: '10px 0' }}
-          >
-            כניסת מנהל
-          </button>
         </div>
       </div>
 

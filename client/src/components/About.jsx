@@ -1,4 +1,5 @@
 import Reveal from './Reveal';
+import therapistPhoto from '../assets/therapist_placeholder.png';
 
 export default function About() {
   return (
@@ -17,7 +18,7 @@ export default function About() {
               }}
             >
               <img
-                src="/therapist-portrait.png"
+                src={therapistPhoto}
                 alt="ישראלה ישראלי — עובדת סוציאלית קלינית"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />

@@ -39,11 +39,12 @@ export default function ContactForm() {
         <Reveal>
           <p className="font-mono uppercase mb-3" style={{ fontSize: 13, letterSpacing: '.16em', color: '#8a4a20' }}>— יצירת קשר</p>
           <h2 className="font-display font-medium text-ink mb-4" style={{ fontSize: 'clamp(28px,6vw,42px)', lineHeight: 1.14 }}>
-            בואו נדבר —<br />אני כאן בשבילכם
+            בואו נדבר <br />אני כאן בשבילכם
           </h2>
           <p className="text-ink-soft mb-8" style={{ fontSize: 'clamp(15px,2.5vw,18px)', lineHeight: 1.66, maxWidth: 420 }}>
-            השאירו פרטים ואחזור אליכם בהקדם.<br />
-            הפנייה דיסקרטית לחלוטין וללא כל התחייבות.
+            אני מזמינה אותך ליצור קשר לשיחת היכרות  <br />
+            ולגלות איך אפשר לעזור לך להתמודד, להתחזק <br />
+            ולמצוא מחדש יציבות וביטחון.
           </p>
 
           <div className="flex flex-col gap-4">

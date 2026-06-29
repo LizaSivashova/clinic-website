@@ -10,7 +10,7 @@ async function loginAndGoToSettings(page: Page) {
   await page.getByRole('button', { name: 'התחברות' }).click();
   await page.waitForURL('/admin', { timeout: 8000 });
   await page.getByRole('button', { name: 'הגדרות' }).click();
-  await expect(page.getByText('התראות במייל')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'התראות במייל' })).toBeVisible();
 }
 
 test.describe('Settings — notification email', () => {
@@ -35,8 +35,11 @@ test.describe('Settings — notification email', () => {
     await page.getByRole('button', { name: 'שמירת הגדרות' }).click();
     await expect(page.getByText('ההגדרות נשמרו')).toBeVisible({ timeout: 5000 });
 
-    // Log back in — the value is persisted in SQLite, not just React state
-    await loginAndGoToSettings(page);
+    // Reload the page — the access token survives in localStorage so no re-login needed.
+    // The value must come from SQLite, not React state, so a reload proves persistence.
+    await page.reload();
+    await page.getByRole('button', { name: 'הגדרות' }).click();
+    await expect(page.getByRole('heading', { name: 'התראות במייל' })).toBeVisible();
     await expect(page.getByPlaceholder('demo@example.com')).toHaveValue('reload-check@test.com');
   });
 });

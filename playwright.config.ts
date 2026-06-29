@@ -1,14 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-
-// Load the project's .env for JWT_SECRET etc., then overlay .env.playwright
-// for the plain-text admin password used by E2E login tests.
-dotenv.config({ path: path.join(here, '.env') });
-dotenv.config({ path: path.join(here, '.env.playwright'), override: false });
+// Relative paths resolve from process.cwd() = project root when running npm run test:e2e.
+// .env holds server config; .env.playwright holds the plain admin password for E2E login.
+dotenv.config({ path: '.env' });
+dotenv.config({ path: '.env.playwright', override: false });
 
 export default defineConfig({
   testDir: './e2e',

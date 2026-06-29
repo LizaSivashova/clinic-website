@@ -37,6 +37,7 @@ test.describe('Contact form', () => {
     await page.getByPlaceholder('השם שלך').fill('איפוס טופס');
     await page.getByPlaceholder('050-0000000').fill('052-1112222');
     await page.getByPlaceholder('your@email.com').fill('reset@test.com');
+    await page.getByPlaceholder('מה מביא אתכם לפנות?').fill('בדיקת איפוס');
     await page.getByRole('button', { name: 'שליחת הפנייה' }).click();
     await expect(page.getByText('הפנייה נשלחה')).toBeVisible({ timeout: 5000 });
 

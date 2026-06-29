@@ -26,12 +26,12 @@ test.describe('Admin login', () => {
     await page.getByRole('button', { name: 'התחברות' }).click();
 
     await expect(page).toHaveURL('/admin', { timeout: 8000 });
-    await expect(page.getByText('סקירה')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'סקירה' })).toBeVisible();
   });
 
   test('unauthenticated visit to /admin redirects away from the dashboard', async ({ page }) => {
-    // RequireAuth sends the user back to / when there is no access token.
+    // RequireAuth redirects to /admin/login when there is no access token.
     await page.goto('/admin');
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/admin/login');
   });
 });

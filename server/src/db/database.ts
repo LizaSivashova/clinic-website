@@ -5,8 +5,11 @@ import { isTest } from '../config/env';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
-// Tests run against an in-memory database for isolation and speed.
-const dbPath = isTest ? ':memory:' : path.join(here, 'app.sqlite');
+// DB_PATH env var lets production deployments point to a persistent volume.
+// Tests always use in-memory for isolation.
+const dbPath = isTest
+  ? ':memory:'
+  : (process.env.DB_PATH ?? path.join(here, 'app.sqlite'));
 
 export const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');

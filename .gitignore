@@ -9,3 +9,10 @@ dist/
 .DS_Store
 npm-debug.log*
 *:Zone.Identifier
+client/src/assets/animation.*
+client/src/assets/anxious_woman.*
+client/src/assets/bad_bubble_*
+client/src/assets/good_bubble_*
+client/src/assets/relaxed_*
+client/src/assets/worried_*
+client/src/assets/woman_transition/

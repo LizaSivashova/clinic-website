@@ -77,6 +77,12 @@ export default function Footer() {
             </button>
           </div>
         </div>
+
+        {/* Developer credit */}
+        <div className="text-center" style={{ marginTop: 16, fontSize: 11.5, color: '#8a7c68', letterSpacing: '.03em' }}>
+          עוצב ופותח על ידי{' '}
+          <span style={{ direction: 'ltr', unicodeBidi: 'isolate', fontWeight: 600, color: '#b3a994' }}>Liza Sivashova</span>
+        </div>
       </div>
     </footer>
   );

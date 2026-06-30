@@ -2,8 +2,6 @@ Therapy Clinic Platform Template Website
 
 A production-deployed, full-stack web platform for a private therapy clinic: a polished **RTL Hebrew** marketing site for clients, plus a secure **admin dashboard** for managing contact-form submissions — built with a type-safe, layered backend and an accessibility layer that meets Israeli standard **IS 5568 (WCAG 2.0 AA)**.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-therapy--clinic.fly.dev-3a5a40?logo=fly.io&logoColor=white)](https://therapy-clinic.fly.dev)
-&nbsp;
 ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -12,7 +10,7 @@ A production-deployed, full-stack web platform for a private therapy clinic: a p
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)
 ![Playwright](https://img.shields.io/badge/Tested_with-Playwright-2EAD33?logo=playwright&logoColor=white)
 
-> **▶ Live site:** <https://therapy-clinic.fly.dev>
+> 🟢 **Live in production** for a real private therapy clinic. Demos below use placeholder content to protect client privacy.
 
 ---
 
@@ -178,7 +176,19 @@ npm --prefix server run hash-password -- "your-chosen-password"
 
 </details>
 
-### 3. Run
+### 3. Configure site content
+
+The public site reads all its copy — therapist identity, hero text, bio, specialties, testimonials, and contact details — from a git-ignored `content.js`. Copy the template and fill in your own details:
+
+```bash
+cp client/src/config/content.example.js client/src/config/content.js
+```
+
+Then edit `client/src/config/content.js`. It's a plain JS module exporting `THERAPIST`, `HERO`, `ABOUT`, `SPECIALTIES`, `TESTIMONIALS`, `CONTACT_TOPICS`, and `FOOTER` — each carries a placeholder value showing the expected format.
+
+> `content.js` is git-ignored so your real details never get committed; only `content.example.js` (placeholder values) lives in the repo.
+
+### 4. Run
 
 ```bash
 npm run dev          # runs client + server together

@@ -64,11 +64,18 @@ export default function Footer() {
         <div className="flex flex-wrap justify-between items-center gap-2 pt-5"
           style={{ fontSize: 12.5, color: '#b3a994' }}>
           <span>© {THERAPIST.copyrightYear} {THERAPIST.name} · כל הזכויות שמורות</span>
-          <button onClick={() => navigate('/admin/login')}
-            className="font-mono cursor-pointer hover:text-muted-light transition-colors"
-            style={{ fontSize: 11.5, color: '#b3a994', background: 'none', border: 'none' }}>
-            admin →
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={() => navigate('/accessibility')}
+              className="cursor-pointer hover:text-paper transition-colors"
+              style={{ fontSize: 12.5, color: '#b3a994', background: 'none', border: 'none' }}>
+              הצהרת נגישות
+            </button>
+            <button onClick={() => navigate('/admin/login')}
+              className="font-mono cursor-pointer hover:text-muted-light transition-colors"
+              style={{ fontSize: 11.5, color: '#b3a994', background: 'none', border: 'none' }}>
+              admin →
+            </button>
+          </div>
         </div>
       </div>
     </footer>

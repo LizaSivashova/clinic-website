@@ -8,9 +8,9 @@ function StatCard({ label, value, sub, accent }) {
   };
   const c = colors[accent] || colors.ink;
   return (
-    <div style={{ background: '#fbf7ef', border: `1px solid ${c.border}`, borderRadius: 18, padding: '22px 24px', boxShadow: '0 4px 16px rgba(44,40,35,.06)' }}>
-      <div style={{ fontSize: 13, color: '#8a7a64', marginBottom: 8 }}>{label}</div>
-      <div className="font-display font-bold" style={{ fontSize: 38, color: c.color, lineHeight: 1 }}>{value ?? '—'}</div>
+    <div style={{ background: '#fbf7ef', border: `1px solid ${c.border}`, borderRadius: 18, padding: 'clamp(14px,3.5vw,22px) clamp(14px,3.5vw,24px)', boxShadow: '0 4px 16px rgba(44,40,35,.06)' }}>
+      <div style={{ fontSize: 'clamp(12px,3vw,13px)', color: '#8a7a64', marginBottom: 8 }}>{label}</div>
+      <div className="font-display font-bold" style={{ fontSize: 'clamp(24px,6.5vw,38px)', color: c.color, lineHeight: 1.1, wordBreak: 'break-word' }}>{value ?? '—'}</div>
       {sub && <div style={{ fontSize: 13, color: '#b3a994', marginTop: 6 }}>{sub}</div>}
     </div>
   );
@@ -24,7 +24,7 @@ export default function Overview({ stats, submissions }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
       {/* Stat cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+      <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: 'clamp(10px,2.5vw,16px)' }}>
         <StatCard label='סה"כ פניות'      value={stats.total}     accent="ink"    />
         <StatCard label="פניות החודש"     value={stats.thisMonth}  accent="terra"  />
         <StatCard label="פניות השבוע"     value={stats.thisWeek}   accent="forest" />

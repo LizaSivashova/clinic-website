@@ -9,6 +9,7 @@ import Testimonials from '../components/Testimonials';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
+import AccessibilityBar from '../components/AccessibilityBar';
 
 export default function LandingPage() {
   return (
@@ -35,6 +36,7 @@ export default function LandingPage() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <AccessibilityBar />
     </div>
   );
 }

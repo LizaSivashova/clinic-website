@@ -19,8 +19,8 @@ export default function Hero() {
   return (
     <header
       id="zt-hero"
-      className="relative z-10 mx-auto flex flex-col items-center text-center"
-      style={{ maxWidth: 920, padding: 'clamp(110px,18vw,190px) clamp(20px,5vw,40px) clamp(60px,10vw,110px)' }}
+      className="relative z-10 mx-auto flex flex-col items-center justify-center text-center"
+      style={{ maxWidth: 920, minHeight: '100svh', padding: 'clamp(96px,16vw,150px) clamp(20px,5vw,40px) clamp(48px,9vw,90px)' }}
     >
       {/* Badge */}
       <Rev delay={0}>
@@ -37,7 +37,7 @@ export default function Hero() {
       <Rev delay={80}>
         <h1
           className="font-display font-medium text-ink"
-          style={{ fontSize: 'clamp(38px,8vw,72px)', lineHeight: 1.1, letterSpacing: '-.015em', margin: '0 0 22px' }}
+          style={{ fontSize: 'clamp(28px,9vw,72px)', lineHeight: 1.1, letterSpacing: '-.015em', margin: '0 0 22px', whiteSpace: 'nowrap' }}
         >
           {HERO.tagline}{' '}
           <span className="text-terracotta-deep italic font-bold">{HERO.taglineEm}</span>
@@ -46,14 +46,14 @@ export default function Hero() {
 
       {/* Subtitle */}
       <Rev delay={160}>
-        <p className="text-ink-soft" style={{ fontSize: 'clamp(16px,4vw,21px)', lineHeight: 1.62, maxWidth: 560, margin: '0 0 14px' }}>
+        <p className="text-ink-soft" style={{ fontSize: 'clamp(13.5px,3.6vw,21px)', lineHeight: 1.62, maxWidth: 520, margin: '0 auto 14px', textWrap: 'balance' }}>
           {HERO.subtitle}
         </p>
       </Rev>
 
       {/* Pull-quote */}
       <Rev delay={220}>
-        <p className="font-display italic text-terracotta-deep" style={{ fontSize: 'clamp(15px,3.5vw,19px)', margin: '0 0 32px' }}>
+        <p className="font-display italic text-terracotta-deep" style={{ fontSize: 'clamp(10px,3.1vw,19px)', margin: '0 auto 32px', whiteSpace: 'nowrap' }}>
           {HERO.pullQuote}
         </p>
       </Rev>
@@ -82,7 +82,7 @@ export default function Hero() {
 
       {/* Stats */}
       <Rev delay={340}>
-        <div className="flex items-center mt-10 justify-center flex-nowrap">
+        <div className="hero-stats flex items-center mt-10 justify-center flex-nowrap">
           {HERO.stats.map((s, i) => (
             <>
               <div key={s.label} style={{ padding: '0 clamp(10px,3vw,36px)', textAlign: 'center' }}>

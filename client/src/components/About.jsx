@@ -67,7 +67,7 @@ export default function About() {
           <div className="flex gap-2.5 flex-wrap">
             {ABOUT.tags.map(p => (
               <span key={p.label} className="font-semibold rounded-full px-4 py-2"
-                style={{ background: p.bg, color: p.color, fontSize: 13.5 }}>
+                style={{ background: p.bg, color: p.color, fontSize: 13.5, whiteSpace: 'nowrap' }}>
                 {p.label}
               </span>
             ))}

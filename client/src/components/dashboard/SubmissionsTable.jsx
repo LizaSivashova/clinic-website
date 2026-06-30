@@ -55,9 +55,21 @@ export default function SubmissionsTable({ submissions }) {
       {/* Toolbar */}
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
         <input value={query} onChange={e => setQuery(e.target.value)} placeholder="חיפוש בפניות…"
-          style={{ ...INPUT, maxWidth: 320 }}
+          className="flex-1 lg:flex-none"
+          style={{ ...INPUT, minWidth: 160, maxWidth: 320 }}
           onFocus={e => (e.target.style.borderColor = '#3a5a40')}
           onBlur={e => (e.target.style.borderColor = 'rgba(44,40,35,.14)')} />
+        {/* Mobile sort (column headers are hidden on phone) */}
+        <select
+          className="lg:hidden"
+          value={`${sort.key}:${sort.dir}`}
+          onChange={e => { const [key, dir] = e.target.value.split(':'); setSort({ key, dir }); }}
+          style={{ ...INPUT, width: 'auto', flex: '0 0 auto' }}>
+          <option value="created_at:desc">החדשות ביותר</option>
+          <option value="created_at:asc">הישנות ביותר</option>
+          <option value="name:asc">שם א-ת</option>
+          <option value="topic:asc">לפי נושא</option>
+        </select>
         <button onClick={downloadCsv}
           style={{ padding: '9px 18px', borderRadius: 10, border: 'none', background: '#2c2823', color: '#fbf7ef', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
           ייצוא CSV
@@ -65,8 +77,8 @@ export default function SubmissionsTable({ submissions }) {
         <span style={{ marginRight: 'auto', fontSize: 13, color: '#8a7a64' }}>{rows.length} פניות</span>
       </div>
 
-      {/* Table */}
-      <div style={{ background: '#fbf7ef', border: '1px solid rgba(44,40,35,.08)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 4px 16px rgba(44,40,35,.06)' }}>
+      {/* Table — desktop */}
+      <div className="hidden lg:block" style={{ background: '#fbf7ef', border: '1px solid rgba(44,40,35,.08)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 4px 16px rgba(44,40,35,.06)' }}>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', textAlign: 'right', fontSize: 14, borderCollapse: 'collapse' }}>
             <thead>
@@ -104,6 +116,33 @@ export default function SubmissionsTable({ submissions }) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Cards — mobile */}
+      <div className="lg:hidden flex flex-col" style={{ gap: 12 }}>
+        {rows.map(s => (
+          <button key={s.id} onClick={() => setSelected(s)}
+            style={{
+              display: 'block', width: '100%', textAlign: 'right', cursor: 'pointer',
+              background: '#fbf7ef', border: '1px solid rgba(44,40,35,.08)', borderRadius: 16,
+              padding: '14px 16px', boxShadow: '0 4px 16px rgba(44,40,35,.06)', fontFamily: 'inherit',
+            }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+              <span className="font-semibold" style={{ fontSize: 16, color: '#2c2823' }}>{s.name}</span>
+              <span style={{ fontSize: 12, color: '#b3a994', whiteSpace: 'nowrap', flexShrink: 0 }}>{formatDate(s.created_at, true)}</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
+              <span style={{ display: 'inline-block', padding: '3px 11px', borderRadius: 999, background: 'rgba(192,130,79,.14)', color: '#a86a3a', fontSize: 12 }}>{s.topic}</span>
+              <span style={{ fontSize: 13, color: '#8a7a64', direction: 'ltr' }}>{s.phone}</span>
+            </div>
+            {s.message && (
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.55, color: '#8a7a64', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{s.message}</p>
+            )}
+          </button>
+        ))}
+        {!rows.length && (
+          <p style={{ padding: '40px', textAlign: 'center', color: '#b3a994', margin: 0 }}>לא נמצאו פניות</p>
+        )}
       </div>
 
       {/* Drawer */}

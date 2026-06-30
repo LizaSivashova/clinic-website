@@ -53,8 +53,8 @@ RTL Hebrew, earth-tone design system, scroll-driven animation, fully responsive.
     <th>Mobile</th>
   </tr>
   <tr>
-    <td><img src="docs/landing-page-website.gif" alt="Landing page — desktop"/></td>
-    <td><img src="docs/landing-page-phone.gif" alt="Landing page — mobile"/></td>
+    <td><img src="docs/demo-landing-desktop.gif" alt="Landing page — desktop"/></td>
+    <td><img src="docs/demo-landing-mobile.gif" alt="Landing page — mobile"/></td>
   </tr>
 </table>
 
@@ -62,7 +62,7 @@ RTL Hebrew, earth-tone design system, scroll-driven animation, fully responsive.
 
 JWT-protected. Overview with stats and a topic breakdown, plus a submissions view that adapts from a sortable table on desktop to stacked cards on mobile.
 
-![Admin dashboard overview](docs/admin-board-website.gif)
+![Admin dashboard overview](docs/demo-admin-overview.gif)
 
 <table>
   <tr>
@@ -70,8 +70,8 @@ JWT-protected. Overview with stats and a topic breakdown, plus a submissions vie
     <th>Contacts — mobile cards</th>
   </tr>
   <tr>
-    <td><img src="docs/admin-contacts.png" alt="Admin contacts table — desktop"/></td>
-    <td><img src="docs/admin-contacts-mobile.png" alt="Admin contacts cards — mobile" width="280"/></td>
+    <td><img src="docs/demo-admin-contacts-desktop.png" alt="Admin contacts table — desktop"/></td>
+    <td><img src="docs/demo-admin-contacts-mobile.png" alt="Admin contacts cards — mobile" width="280"/></td>
   </tr>
 </table>
 
@@ -81,8 +81,8 @@ A floating widget lets any visitor adjust the experience — text size (up to 2�
 
 <table>
   <tr>
-    <td><img src="docs/accessibility-tool.gif" alt="Accessibility toolbar in action" width="300"/></td>
-    <td><img src="docs/accessibility-tool.png" alt="Accessibility toolbar panel"/></td>
+    <td><img src="docs/demo-accessibility-tool.gif" alt="Accessibility toolbar in action" width="300"/></td>
+    <td><img src="docs/demo-accessibility-panel.png" alt="Accessibility toolbar panel"/></td>
   </tr>
 </table>
 
@@ -338,7 +338,7 @@ The site is built to comply with the Israeli **Equal Rights for Persons with Dis
 - **Accessibility statement page** (`/accessibility`) — a formal הצהרת נגישות declaring the conformance level, listing the available adjustments and known limitations, and providing the accessibility coordinator's contact details.
 - **Foundations** — semantic landmarks, a "skip to content" link, keyboard navigation, alt text, `aria-live` form feedback, and respect for the OS `prefers-reduced-motion` setting.
 
-![Accessibility statement page](docs/accessibility-statement.png)
+![Accessibility statement page](docs/demo-accessibility-statement.png)
 
 ---
 

@@ -364,9 +364,10 @@ The client keeps the access token in `localStorage` and silently calls `/refresh
 
 ## Deployment
 
-Containerised with the root `Dockerfile` and deployed on **Fly.io** (`fly.toml`, region `fra`). The production image builds the client and runs Express, which serves both the API and the static front-end from a single origin.
+Containerised with the root `Dockerfile` and deployed on **Fly.io**. The production image builds the client and runs Express, which serves both the API and the static front-end from a single origin.
 
 ```bash
+cp fly.example.toml fly.toml   # then set your own app name (fly.toml is git-ignored)
 fly deploy
 ```
 

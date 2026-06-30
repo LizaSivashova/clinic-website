@@ -4,8 +4,8 @@ import { logger } from './utils/logger';
 
 const app = createApp();
 
-const server = app.listen(env.PORT, () => {
-  logger.info(`Server listening on http://localhost:${env.PORT} (${env.NODE_ENV})`);
+const server = app.listen(env.PORT, '0.0.0.0', () => {
+  logger.info(`Server listening on http://0.0.0.0:${env.PORT} (${env.NODE_ENV})`);
 });
 
 // Graceful shutdown

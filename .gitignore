@@ -20,3 +20,7 @@ client/src/assets/good_bubble_*
 client/src/assets/relaxed_*
 client/src/assets/worried_*
 client/src/assets/woman_transition/
+
+# Real, client-specific deploy config & content (keep local, never commit)
+fly.toml
+client/src/config/content2.js

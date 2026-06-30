@@ -1,4 +1,4 @@
-# Demo Therapist — Therapy Clinic Platform
+Therapy Clinic Platform Template Website
 
 A production-deployed, full-stack web platform for a private therapy clinic: a polished **RTL Hebrew** marketing site for clients, plus a secure **admin dashboard** for managing contact-form submissions — built with a type-safe, layered backend and an accessibility layer that meets Israeli standard **IS 5568 (WCAG 2.0 AA)**.
 
